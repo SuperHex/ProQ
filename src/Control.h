@@ -99,9 +99,11 @@ void TrueControl(double Roll, double Pitch, double Yaw){
 							 - 		f_pitch[RB] * PID_output[Y]
 							 +		f_yaw[RB]   * PID_output[Z]);
 
-	for(int i = 0; i < 4; i++){
+	for(int i = 0; i < 4; i++)
+	{
 		motor[i].writeMicroseconds(motorControl[i]);
 	}
+	
 	delay(20);
 }
 
