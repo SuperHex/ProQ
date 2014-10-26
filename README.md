@@ -1,10 +1,10 @@
-#Project-Quadcopter
+Project-Quadcopter
 ---
 
 This Project is a  very naive implementation of a mini quadcopter using Arduino and Mono,in order to simplify
 the development of quadcopter.
 
-##Features
+Features
 ---
 
 + From hardware to software design
@@ -13,7 +13,7 @@ the development of quadcopter.
 + Wifi communication support
 + Camera and video streaming support
 
-##Progressing
+Progressing
 ---
 
 + Complement filter : ====================> 100%
@@ -23,9 +23,9 @@ the development of quadcopter.
 + schematic design  : ==================>   90%
 + PCB layout        : >                      0%
 
-##ToDo list
+ToDo list
 ---
 
 + Kalman filter support
 + Sensor recorrect
-+ ...
++ and more...
