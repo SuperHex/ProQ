@@ -1,31 +1,34 @@
-Project-Quadcopter
+Project Utopia
 ---
 
-This Project is a  very naive implementation of a mini quadcopter using Arduino and Mono,in order to simplify
-the development of quadcopter.
+Note: This is the experimental branch of Utopia,you should NOT use it unless for develop.Use stable branch instead.
+Utopia is a experimantal quadcopter flight controller project. We start this project in order to learn how to build a quadcopter from scratch, and make it as easy as possiable.
+There are serval modules we are going to build,include:
+[ ] main.c - main controller
+    [ ] utility - some useful tools to get access to mcu and sensors.
+    [ ] mathematics - algorithms that keep things running.
+    [ ] driver - After getting some results, apply it to motors.
+    [ ] sensors - tools for sensors.
 
-Features
+Usage
 ---
 
-+ From hardware to software design
-+ Algorithm written in Arduino
-+ Remote control with C# (Mono)
-+ Wifi communication support
-+ Camera and video streaming support
+## Manual install
 
-Progressing
----
+First, make sure you have installed the required tools.
+```
+$ sudo apt-get install gcc-avr avr-libc avrdude
+```
 
-+ Complement filter : ====================> 100%
-+ Motor mapping     : ====================> 100%
-+ Power managment   : =>                     5%
-+ Wifi support      : >                      0%
-+ schematic design  : ==================>   90%
-+ PCB layout        : >                      0%
+build from source code
+```
+$ git clone https://github.com/SuperHex/ProQ
+$ cd ./ProQ
+$ make
+```
 
-ToDo list
----
+and you can upload your `.hex` file by avrdude
+```
+$ avrdude -p m168 -P /dev/ttyUSB0 -c stk500v1 -b 19200 -F -u -U flash:w:foo.hex  # change "foo.hex" to what you get
+```
 
-+ Kalman filter support
-+ Sensor recorrect
-+ and more...
