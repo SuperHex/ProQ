@@ -1,26 +1,26 @@
-#include <libmpu.h>
+#include "libmpu.h"
 
 void initAcc() {
   //调用 ADXL345
-  writeTo(ACC, 0x2D, 0);      
+  writeTo(ACC, 0x2D, 0);
   writeTo(ACC, 0x2D, 16);
   writeTo(ACC, 0x2D, 8);
   //设定在 +-2g 时的默认读数
 }
- 
+
 void getAccelerometerData(double * result) {
   int regAddress = 0x32;    //加速度传感器ADXL345第一轴的数据的设定
   byte buff[A_TO_READ];
- 
+
   readFrom(ACC, regAddress, A_TO_READ, buff); //读取加速度传感器ADXL345的数据
- 
-  //每个轴的读数有10位分辨率，即2个字节.  
+
+  //每个轴的读数有10位分辨率，即2个字节.
   //我们要转换两个bytes为一个int变量
-  result[0] = ((((int)buff[1]) << 8) | buff[0] + a_offx) / 256.0;   
+  result[0] = ((((int)buff[1]) << 8) | buff[0] + a_offx) / 256.0;
   result[1] = ((((int)buff[3]) << 8) | buff[2] + a_offy) / 256.0;
   result[2] = ((((int)buff[5]) << 8) | buff[4] + a_offz) / 256.0;
 }
- 
+
 //初始化陀螺仪
 void initGyro()
 {
@@ -40,8 +40,8 @@ void initGyro()
   writeTo(GYRO, G_DLPF_FS, 0x1E); // +/- 2000 dgrs/sec, 1KHz, 1E, 19
   writeTo(GYRO, G_INT_CFG, 0x00);
 }
- 
- 
+
+
 void getGyroscopeData(double * result)
 {
   /**************************************
@@ -52,20 +52,20 @@ void getGyroscopeData(double * result)
    * y axis MSB = 1F, y axis LSB = 20
    * z axis MSB = 21, z axis LSB = 22
    *************************************/
- 
+
   int regAddress = 0x1B;
   int temp, x, y, z;
   byte buff[G_TO_READ];
- 
+
   readFrom(GYRO, regAddress, G_TO_READ, buff); //读取陀螺仪ITG3200的数据
- 
+
   result[0] = (((buff[2] << 8) | buff[3]) + g_offx) / 14.375;
   result[1] = (((buff[4] << 8) | buff[5]) + g_offy) / 14.375;
   result[2] = (((buff[6] << 8) | buff[7]) + g_offz) / 14.375;
   result[3] = (buff[0] << 8) | buff[1]; // 温度
- 
+
 }
- 
+
 void initMagnet(){
   writeTo(MAGNET, M_MODE, 0x00);
 }
@@ -81,4 +81,3 @@ void getMagnetData(double *result){
   result[1] = (((buff[4] << 8) | buff[5]) + m_offz);
 
 }
-
